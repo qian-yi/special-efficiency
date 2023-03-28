@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浅忆</title>
+    <style>
+        *{margin:0;padding:0;}
+        li{list-style:none;}
+        a{text-decoration: none;}
+        body{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        const cv = document.querySelector("canvas");
+        const c = cv.getContext("2d");
+        let w = cv.width = window.innerWidth,
+            h = cv.height = window.innerHeight,
+            arr = [];
+        
+        window.onresize = function(){
+            // 当重新去设置宽高的时候，会把所有 canvas的样式重置
+            w = cv.width = window.innerWidth;
+            h = cv.height = window.innerHeight;
+            c.strokeStyle = 'rgba(174,194,224,.5)';
+        };
+        
+        for(let i=0;i<300;i++){
+            arr.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                endX: Math.random() * 4 - 2,
+                endY: Math.random() * 10 + 10,
+                speed: Math.random() // 速度
+            });
+        }
+        c.strokeStyle = 'rgba(174,194,224,.5)';
+        function draw(){
+            c.clearRect(0,0,w,h);
+            c.rect(0,0,w,h);
+            c.fill();
+
+            for(let i=0,len=arr.length;i<len;i++){
+                c.beginPath();
+                c.moveTo(arr[i].x,arr[i].y);
+                c.lineTo(arr[i].x + arr[i].endX * arr[i].speed,arr[i].y + arr[i].endY * arr[i].speed);
+                c.stroke();
+            }
+            move();
+        }
+        function move(){
+            for(let i=0,len=arr.length;i<len;i++){
+                arr[i].x += arr[i].endX;
+                arr[i].y += arr[i].endY;
+                if(arr[i].y > h || arr[i].x > w){
+                    arr[i].y = -20;
+                    arr[i].x = Math.random() * w;
+                }
+            }
+        }
+        setInterval(draw,30);
+    </script>
+</body>
+</html>
