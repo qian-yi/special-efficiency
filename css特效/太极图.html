@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>旋转太极图</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #ccc;
+    }
+
+    .taichi {
+      display: flex;
+      /*弹性盒模型*/
+      align-items: center;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(#000 50%, #fff 50%);
+      /*从上到下填色*/
+      margin: 100px auto;
+      border-radius: 50%;
+      /*变成一个圆*/
+    }
+
+    .taichi::before,
+    .taichi::after {
+      /*并列选择器：同时选中多个元素并设置相同的属性*/
+      display: block;
+      /*块元素*/
+      content: "";
+      width: 50%;
+      height: 50%;
+      border-radius: 50%;
+    }
+
+    .taichi::before {
+      background: radial-gradient(#000 25%, #fff 25%);
+      animation: changeSize 1.5s infinite alternate linear;
+      /*动画属性：动画名称  播出时长 无限循环  匀速播放*/
+      transform-origin: 0 50%;
+    }
+
+    .taichi::after {
+      background: radial-gradient(#fff 25%, #000 25%);
+      animation: changeSize 1.5s infinite alternate linear;
+      transform-origin: 100% 50%;
+      animation-delay: -1.5s;
+    }
+
+    @keyframes changeSize {
+      from {
+        /*第一帧*/
+        transform: scale(0.5);
+        /*变化：大小（倍数 >1  变大  0<缩小<1）*/
+      }
+
+      to {
+        /*最后一帧*/
+        transform: scale(1.5);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <i class="taichi">
+    <!--<div class="leftC"></div>-->
+    <!--<div class="rightC"></div>-->
+  </i>
+</body>
+
+</html>
+<!--
+  动画：
+    会动的画
+    画是静态的
+    1s之内连续  播放静态的漫画
+    帧：里面物体的状态要发生改变
+-->
