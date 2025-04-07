@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浅忆</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    :root {
+      --width: 20px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      margin: 100px 0;
+    }
+
+    .btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 150px;
+      background: #000;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 15px 0;
+      transform: skew(-30deg);
+    }
+
+    .btn::before {
+      position: absolute;
+      content: '';
+      width: var(--width);
+      height: var(--width);
+      bottom: 0;
+      left: -20px;
+      background: radial-gradient(
+        circle at 0 0,
+        transparent, 
+        transparent var(--width), 
+        #000 var(--width)
+      );
+    }
+    .btn::after {
+      position: absolute;
+      content: '';
+      width: var(--width);
+      height: var(--width);
+      top: 0;
+      right: -20px;
+      background: radial-gradient(
+        circle at 100% 100%,
+        transparent, 
+        transparent var(--width), 
+        #000 var(--width)
+      );
+    }
+  </style>
+</head>
+
+<body>
+  <p class="btn">倾斜按钮</p>
+</body>
+</html>
