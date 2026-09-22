@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>跟随鼠标移动的点</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: skyblue;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dot"></div>
+
+  <script>
+    document.addEventListener('mousemove', e => {
+      const { clientX, clientY } = e
+      const dot = document.querySelector('.dot')
+      dot.style.left = `${clientX - 5}px`
+      dot.style.top = `${clientY - 5}px`
+    })
+  </script>
+</body>
+</html>
